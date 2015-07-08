@@ -13,35 +13,49 @@ namespace OperatorOverloading.Model
         private double amount; //recieves amount
         public string Currency
         {
-            set;
-            get;
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                {
+                    throw new System.Exception(ExceptionMessages.CurrencyNull);
+                }
+                else
+                {
+                    currency = value;
+                }
+            }
+            get { return currency; }
         }
         public double Amount
         {
-            set;
-            get;
-        }
+            set
+            {
+              amount = value;
+            }
+            
+            get
+            {
+                return amount;
+            }  
+           
+        
+         }
 
         //overload + operator to add two money objects
 
         public static Money operator +(Money first, Money second) //operator overloading
         {
-            if ((first.Amount <= 0 || first.Amount > Double.MaxValue) || (second.Amount <= 0 || second.Amount > Double.MaxValue))
-            {
-                throw new System.Exception("Neither of the amounts can be null");
-
-            }
+          
 
 
-            else
-            {
-                if (first.Currency.Equals(second.Currency))
+           
+                if (String.Equals(first.Currency, second.Currency, StringComparison.InvariantCultureIgnoreCase))
                 {
                     Money money = new Money();
                     money.Amount = first.Amount + second.Amount;
                     if (money.Amount < 0 || money.Amount > Double.MaxValue)
                     {
-                        throw new System.Exception("Total Amount Exceeds The LImit");
+                        throw new System.Exception(ExceptionMessages.AmountExceeds);
                     }
 
                     else
@@ -51,7 +65,7 @@ namespace OperatorOverloading.Model
                 }
                 else
                 {
-                    throw new System.Exception("Currency Mismatch Occurs");
+                    throw new System.Exception(ExceptionMessages.CurrencyMismatch);
                 }
             }
 
@@ -60,6 +74,6 @@ namespace OperatorOverloading.Model
 
 
     }
-}
+
     
 

@@ -17,14 +17,37 @@ namespace OperatorOverloading.Host
                 Money moneyTwo = new Money();   
                 Money moneyThree = new Money();
                 double result;
+             
+               
                 Console.WriteLine("Enter currency and amount for first user");
-                moneyOne.Currency=Console.ReadLine(); //recieve currency for first entry
-                Double.TryParse(Console.ReadLine(), out result);   //recieve amount for first entry
-                moneyOne.Amount =result;
+                moneyOne.Currency = Console.ReadLine();           //recieve currency for first entry
+                                   
+                
+                    if (Double.TryParse( Console.ReadLine(), out result) == true) //it returns false also when entered amount is null or empty
+                    {
+                        moneyOne.Amount = result;
+                    }
+                    else
+                    {
+                        throw new System.Exception();
+                    }
+                
+                  
+                
              Console.WriteLine("Enter currency and amount for second user");
                   
-                 moneyTwo.Currency=Console.ReadLine(); //recieve currency for second entry
-                 Double.TryParse(Console.ReadLine(), out result);   //recieve amount for first entry
+                 moneyTwo.Currency=Console.ReadLine();              //recieve currency for second entry
+                 if (Double.TryParse(Console.ReadLine(), out result) == true) //it returns false also when entered amount is null or empty
+                    {
+                      moneyOne.Amount = result;
+                    }
+                   
+                 else
+                    {
+                        throw new System.Exception(ExceptionMessages.AmountNull);          
+                    }
+                
+                 
                  moneyTwo.Amount = result;
               
               moneyThree= moneyOne + moneyTwo;
