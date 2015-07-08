@@ -11,56 +11,33 @@ namespace OperatorOverloading.Host
     {
         public static void Main(string[] args)
         {
-            try
-            {
-                Money moneyOne = new Money();   
-                Money moneyTwo = new Money();   
-                Money moneyThree = new Money();
-                double result;
-             
-               
-                Console.WriteLine("Enter currency and amount for first user");
-                moneyOne.Currency = Console.ReadLine();           //recieve currency for first entry
-                                   
-                
-                    if (Double.TryParse( Console.ReadLine(), out result) == true) //it returns false also when entered amount is null or empty
-                    {
-                        moneyOne.Amount = result;
-                    }
-                    else
-                    {
-                        throw new System.Exception();
-                    }
-                
-                  
-                
-             Console.WriteLine("Enter currency and amount for second user");
-                  
-                 moneyTwo.Currency=Console.ReadLine();              //recieve currency for second entry
-                 if (Double.TryParse(Console.ReadLine(), out result) == true) //it returns false also when entered amount is null or empty
-                    {
-                      moneyOne.Amount = result;
-                    }
-                   
-                 else
-                    {
-                        throw new System.Exception(ExceptionMessages.AmountNull);          
-                    }
-                
-                 
-                 moneyTwo.Amount = result;
-              
-              moneyThree= moneyOne + moneyTwo;
-
-                Console.WriteLine("Total Amount : {0} ", moneyThree.Amount); 
-            }
-           
             
+                double result1;
+                double result2;
+                Console.WriteLine("Enter currency and amount for first entry");
+                string currency1 = Console.ReadLine();
+                Double.TryParse(Console.ReadLine(), out result1);
+                Money moneyOne = new Money(currency1, result1);
+                Console.WriteLine("Enter currency and amount for second entry");
+                string currency2 = Console.ReadLine();
+                Double.TryParse(Console.ReadLine(), out result2);
+
+                Money moneyTwo = new Money(currency2, result2);
+                Money moneyThree;
+
+              try{
+                    moneyThree = moneyOne + moneyTwo;
+            }
+
+
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("hie"+e.Message);
+                Console.ReadKey();
+                return;
             }
+              Console.WriteLine("Currency and Total Amount : {0} ", moneyThree.Currency, moneyThree.Amount);
             Console.ReadKey();
-           }//end of main
+        }//end of main
     }
 }

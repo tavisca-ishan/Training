@@ -121,12 +121,15 @@
     <value>"Total Amount Exceeds The Limit"</value>
   </data>
   <data name="AmountNull" xml:space="preserve">
-    <value>"Amount cannot be null"</value>
+    <value>"Amount cannot be null nor greater than maximum value"</value>
   </data>
   <data name="CurrencyMismatch" xml:space="preserve">
     <value>"Currency Mismatch Occurs"</value>
   </data>
   <data name="CurrencyNull" xml:space="preserve">
     <value>"Currency Cannot be null value"</value>
+  </data>
+  <data name="InvalidFormat" xml:space="preserve">
+    <value>"Incorrect Format of Currency"</value>
   </data>
 </root>

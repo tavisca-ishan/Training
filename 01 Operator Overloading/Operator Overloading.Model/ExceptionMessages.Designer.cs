@@ -70,7 +70,7 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Amount cannot be null&quot;.
+        ///   Looks up a localized string similar to &quot;Amount cannot be null nor greater than maximum value&quot;.
         /// </summary>
         internal static string AmountNull {
             get {
@@ -93,6 +93,15 @@ namespace OperatorOverloading.Model {
         internal static string CurrencyNull {
             get {
                 return ResourceManager.GetString("CurrencyNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Incorrect Format of Currency&quot;.
+        /// </summary>
+        internal static string InvalidFormat {
+            get {
+                return ResourceManager.GetString("InvalidFormat", resourceCulture);
             }
         }
     }

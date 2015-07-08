@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Operator Overloading", "01 Operator Overloading", "{8031EBFD-474C-4114-954E-AD6192B0EB2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator Overloading.Host", "01 Operator Overloading\Operator Overloading.Host\Operator Overloading.Host.csproj", "{977E178B-A06C-45BE-A03D-13A81EEB37A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Host", "01 Operator Overloading\Operator Overloading.Host\OperatorOverloading.Host.csproj", "{977E178B-A06C-45BE-A03D-13A81EEB37A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator Overloading.Model", "01 Operator Overloading\Operator Overloading.Model\Operator Overloading.Model.csproj", "{5FBBD6AF-DA18-4FB8-917B-930E4B9DA33A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Model", "01 Operator Overloading\Operator Overloading.Model\OperatorOverloading.Model.csproj", "{5FBBD6AF-DA18-4FB8-917B-930E4B9DA33A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
