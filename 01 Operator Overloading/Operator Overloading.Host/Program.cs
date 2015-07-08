@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Operator_Overloading.Model;
+using OperatorOverloading.Model;
 
-namespace Operator_Overloading.Host
+namespace OperatorOverloading.Host
 {
     class Program
     {
@@ -13,29 +13,29 @@ namespace Operator_Overloading.Host
         {
             try
             {
-                Money Money1 = new Money();   // Declare Money1 of type Money
-                Money Money2 = new Money();   // Declare Money2 of type Money
-                Money Money3 = new Money();
-
+                Money moneyOne = new Money();   
+                Money moneyTwo = new Money();   
+                Money moneyThree = new Money();
+                double result;
                 Console.WriteLine("Enter currency and amount for first user");
-                Money1.getCurrency(); //recieve currency for first user
-                Money1.getAmount();   //recieve amount for first user
-                Console.WriteLine("Enter currency and amount for second user");
-                Money2.getCurrency(); //recieve currency for second user
-                Money2.getAmount(); //recieve amount for seoond user
+                moneyOne.Currency=Console.ReadLine(); //recieve currency for first entry
+                Double.TryParse(Console.ReadLine(), out result);   //recieve amount for first entry
+                moneyOne.Amount =result;
+             Console.WriteLine("Enter currency and amount for second user");
+                  
+                 moneyTwo.Currency=Console.ReadLine(); //recieve currency for second entry
+                 Double.TryParse(Console.ReadLine(), out result);   //recieve amount for first entry
+                 moneyTwo.Amount = result;
+              
+              moneyThree= moneyOne + moneyTwo;
 
-
-                Money3 = Money1 + Money2;
-
-                Console.WriteLine("Total Amount : {0} ", Money3.amount); 
+                Console.WriteLine("Total Amount : {0} ", moneyThree.Amount); 
             }
-            catch (ArgumentException e1)
+           
+            
+            catch (Exception e)
             {
-                Console.WriteLine(e1);
-            }
-            catch (Exception e2)
-            {
-                Console.WriteLine(e2);
+                Console.WriteLine(e.Message);
             }
             Console.ReadKey();
            }//end of main
