@@ -38,11 +38,10 @@ namespace OperatorOverloading.Model
             {
                 throw new System.Exception(ExceptionMessages.InvalidFormat);
             }
-            else
-            {
-                Amount = amount;
-                Currency = split[1];
-            }
+
+            Amount = amount;
+            Currency = split[1];
+
         }
 
         public Money(double amount, string currency)
@@ -122,6 +121,7 @@ namespace OperatorOverloading.Model
                 }
                 else
                 {
+                   
                     throw new Exception(ExceptionMessages.CurrencyMismatch);
                 }
             }

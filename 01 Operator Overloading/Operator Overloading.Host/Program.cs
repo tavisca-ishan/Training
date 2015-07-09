@@ -17,8 +17,8 @@ namespace OperatorOverloading.Host
                 Money moneyOne = new Money(Console.ReadLine());
 
                 Console.WriteLine("Enter amount and currency for second entry");
-
                 Money moneyTwo = new Money(Console.ReadLine());
+
                 Money moneyThree = moneyOne + moneyTwo;
                 Console.WriteLine("Currency and Total Amount : {0} {1}", moneyThree.Amount, moneyThree.Currency);
 
