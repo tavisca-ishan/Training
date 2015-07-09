@@ -121,7 +121,11 @@ namespace OperatorOverloading.Model
                 }
                 else
                 {
-                   
+                    //Cons                    ole.WriteLine("Performing Currency Conversion");
+                    //if(string.Equals(money1.Currency,"usd",StringComparison.InvariantCultureIgnoreCase))
+                    //{
+                    //    money1.Convert(money1.Currency,          
+                    //}
                     throw new Exception(ExceptionMessages.CurrencyMismatch);
                 }
             }
