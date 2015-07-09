@@ -104,5 +104,14 @@ namespace OperatorOverloading.Model {
                 return ResourceManager.GetString("InvalidFormat", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Enter some value for amount and currency&quot;.
+        /// </summary>
+        internal static string NullEntered {
+            get {
+                return ResourceManager.GetString("NullEntered", resourceCulture);
+            }
+        }
     }
 }

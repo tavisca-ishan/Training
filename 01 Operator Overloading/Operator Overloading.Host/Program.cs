@@ -12,31 +12,23 @@ namespace OperatorOverloading.Host
         public static void Main(string[] args)
         {
             try
-            {            
-               // double result1;
-                //double result2;
+            {
                 Console.WriteLine("Enter amount and currency for first entry");
-                string input1 = Console.ReadLine();
-               
-                Money moneyOne = new Money(input1);
-              
+                Money moneyOne = new Money(Console.ReadLine());
+
                 Console.WriteLine("Enter amount and currency for second entry");
-                string input2 = Console.ReadLine();
-                
+               
 
-                Money moneyTwo = new Money(input2);
-                Money moneyThree;
 
-                    moneyThree = moneyOne + moneyTwo;
-                    Console.WriteLine("Currency and Total Amount : {0} ", moneyThree.Currency, moneyThree.Amount);
+                Money moneyTwo = new Money( Console.ReadLine());
+                var moneyThree = moneyOne + moneyTwo;
+                Console.WriteLine("Currency and Total Amount : {0} ", moneyThree.Currency, moneyThree.Amount);
 
             }
 
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Console.ReadKey();
-                return;
             }
             Console.ReadKey();
         }//end of main

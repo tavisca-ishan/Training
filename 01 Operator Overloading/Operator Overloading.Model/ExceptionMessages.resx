@@ -132,4 +132,7 @@
   <data name="InvalidFormat" xml:space="preserve">
     <value>"Incorrect Format!Enter Amount first and then Currency"</value>
   </data>
+  <data name="NullEntered" xml:space="preserve">
+    <value>"Enter some value for amount and currency"</value>
+  </data>
 </root>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace OperatorOverloading.Model
 {
 
-  
+
 
 
     public class Money
@@ -15,26 +15,37 @@ namespace OperatorOverloading.Model
 
         private string _currency; //recieves currency
         private double _amount; //recieves amount
-        double number;
-        public Money(string newString)
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="moneyString">Money represented as string eg 100 USD</param>
+        public Money(string moneyString)
         {
-            string[] split = newString.Split(' ');
+            if (moneyString == null)
+            {
+                throw new System.Exception(ExceptionMessages.NullEntered);
+            }
+            string[] split = moneyString.Split(' ');
             if (split.Length != 2)
             {
                 throw new System.Exception(ExceptionMessages.InvalidFormat);
             }
-            if ((Double.TryParse(split[0], out number) != true))
+
+            double number;
+            if ((double.TryParse(split[0], out number) == false))
             {
                 throw new System.Exception(ExceptionMessages.InvalidFormat);
             }
-            else 
+            else
             {
                 Amount = number;
                 Currency = split[1];
             }
         }
 
-        public Money(string currency, double amount)
+        public Money(double amount, string currency)
         {
             this.Currency = currency;
             this.Amount = amount;
@@ -64,8 +75,8 @@ namespace OperatorOverloading.Model
         {
             private set
             {
-                
-                if (value <=0  || value > Double.MaxValue)
+
+                if (value <= 0 || value > Double.MaxValue)
                 {
                     throw new System.Exception(ExceptionMessages.AmountNull);
                 }
@@ -84,29 +95,35 @@ namespace OperatorOverloading.Model
         }
 
         //overload + operator to add two money objects
-        public static Money operator +(Money first, Money second) //operator overloading
+        public static Money operator +(Money money1, Money money2) //operator overloading
         {
-
-            if (String.Equals(first.Currency, second.Currency, StringComparison.InvariantCultureIgnoreCase))
+            if (money1 == null || money2 == null)
             {
-                double totalAmount = first.Amount + second.Amount;
-           
-                      
-               
-                if (Double.IsPositiveInfinity(totalAmount))
-                {
-                    throw new System.Exception(ExceptionMessages.AmountExceeds);
-                }
-
-                else
-                {
-                    
-                    return new Money(first.Currency, totalAmount);
-                }
+                throw new System.Exception(ExceptionMessages.AmountNull);
             }
             else
             {
-                throw new Exception(ExceptionMessages.CurrencyMismatch);
+                if (String.Equals(money1.Currency, money2.Currency, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    double totalAmount = money1.Amount + money2.Amount;
+
+
+
+                    if (Double.IsPositiveInfinity(totalAmount))
+                    {
+                        throw new System.Exception(ExceptionMessages.AmountExceeds);
+                    }
+
+                    else
+                    {
+
+                        return new Money(totalAmount,money1.Currency);
+                    }
+                }
+                else
+                {
+                    throw new Exception(ExceptionMessages.CurrencyMismatch);
+                }
             }
         }
 
