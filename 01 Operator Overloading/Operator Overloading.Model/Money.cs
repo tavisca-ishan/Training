@@ -33,14 +33,14 @@ namespace OperatorOverloading.Model
                 throw new System.Exception(ExceptionMessages.InvalidFormat);
             }
 
-            double number;
-            if ((double.TryParse(split[0], out number) == false))
+            double amount;
+            if ((double.TryParse(split[0], out amount) == false))
             {
                 throw new System.Exception(ExceptionMessages.InvalidFormat);
             }
             else
             {
-                Amount = number;
+                Amount = amount;
                 Currency = split[1];
             }
         }
@@ -55,7 +55,7 @@ namespace OperatorOverloading.Model
         {
             private set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new System.Exception(ExceptionMessages.CurrencyNull);
                 }
@@ -76,7 +76,7 @@ namespace OperatorOverloading.Model
             private set
             {
 
-                if (value <= 0 || value > Double.MaxValue)
+                if (value <= 0 || value > double.MaxValue)
                 {
                     throw new System.Exception(ExceptionMessages.AmountNull);
                 }
@@ -103,13 +103,13 @@ namespace OperatorOverloading.Model
             }
             else
             {
-                if (String.Equals(money1.Currency, money2.Currency, StringComparison.InvariantCultureIgnoreCase))
+                if (string.Equals(money1.Currency, money2.Currency, StringComparison.InvariantCultureIgnoreCase))
                 {
                     double totalAmount = money1.Amount + money2.Amount;
 
 
 
-                    if (Double.IsPositiveInfinity(totalAmount))
+                    if (double.IsPositiveInfinity(totalAmount))
                     {
                         throw new System.Exception(ExceptionMessages.AmountExceeds);
                     }
