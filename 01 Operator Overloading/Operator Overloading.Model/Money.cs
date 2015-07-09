@@ -117,7 +117,7 @@ namespace OperatorOverloading.Model
                     else
                     {
 
-                        return new Money(totalAmount,money1.Currency);
+                        return new Money(totalAmount, money1.Currency);
                     }
                 }
                 else

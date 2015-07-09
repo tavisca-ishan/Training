@@ -21,8 +21,8 @@ namespace OperatorOverloading.Host
 
 
                 Money moneyTwo = new Money( Console.ReadLine());
-                var moneyThree = moneyOne + moneyTwo;
-                Console.WriteLine("Currency and Total Amount : {0} ", moneyThree.Currency, moneyThree.Amount);
+                Money moneyThree = moneyOne + moneyTwo;
+                Console.WriteLine("Currency and Total Amount : {0} {1}",  moneyThree.Amount,moneyThree.Currency);
 
             }
 
