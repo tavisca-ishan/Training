@@ -97,7 +97,7 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Incorrect Format of Currency&quot;.
+        ///   Looks up a localized string similar to &quot;Incorrect Format!Enter Amount first and then Currency&quot;.
         /// </summary>
         internal static string InvalidFormat {
             get {

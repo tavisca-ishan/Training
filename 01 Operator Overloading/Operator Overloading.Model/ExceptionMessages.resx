@@ -130,6 +130,6 @@
     <value>"Currency Cannot be null value"</value>
   </data>
   <data name="InvalidFormat" xml:space="preserve">
-    <value>"Incorrect Format of Currency"</value>
+    <value>"Incorrect Format!Enter Amount first and then Currency"</value>
   </data>
 </root>

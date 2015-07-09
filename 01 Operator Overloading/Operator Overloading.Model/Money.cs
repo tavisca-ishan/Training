@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace OperatorOverloading.Model
 {
 
-    // do all validation in a private set property
-    // create two constructors (double, string) and (string) 100 USD
+  
 
 
     public class Money
@@ -27,6 +26,11 @@ namespace OperatorOverloading.Model
             if ((Double.TryParse(split[0], out number) != true))
             {
                 throw new System.Exception(ExceptionMessages.InvalidFormat);
+            }
+            else 
+            {
+                Amount = number;
+                Currency = split[1];
             }
         }
 
@@ -60,7 +64,8 @@ namespace OperatorOverloading.Model
         {
             private set
             {
-                if (value <= 0 || value > Double.MaxValue)
+                
+                if (value <=0  || value > Double.MaxValue)
                 {
                     throw new System.Exception(ExceptionMessages.AmountNull);
                 }
@@ -85,7 +90,7 @@ namespace OperatorOverloading.Model
             if (String.Equals(first.Currency, second.Currency, StringComparison.InvariantCultureIgnoreCase))
             {
                 double totalAmount = first.Amount + second.Amount;
-                //Console.WriteLine("hie");
+           
                       
                
                 if (Double.IsPositiveInfinity(totalAmount))
