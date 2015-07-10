@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using OperatorOverloading.Model;
 
-
 namespace OperatorOverloading.Host
 {
     class Program
@@ -35,7 +34,6 @@ namespace OperatorOverloading.Host
             }//end of catch block
 
             Console.ReadKey();
-
 
         }//end of main
     }//end of class
