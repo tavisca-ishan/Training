@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace OperatorOverloading.Model
 {
-
-
-
-
     public class Money
     {
-
         private string _currency; //recieves currency
         private double _amount; //recieves amount
 
@@ -46,8 +41,8 @@ namespace OperatorOverloading.Model
 
         public Money(double amount, string currency)
         {
-            this.Currency = currency;
             this.Amount = amount;
+            this.Currency = currency;
         }
 
         public string Currency
@@ -55,13 +50,11 @@ namespace OperatorOverloading.Model
             private set
             {
                 if (string.IsNullOrEmpty(value))
-                {
+
                     throw new System.Exception(ExceptionMessages.CurrencyNull);
-                }
-                else
-                {
-                    _currency = value;
-                }
+
+                _currency = value;
+
             }
             get
             {
@@ -69,20 +62,16 @@ namespace OperatorOverloading.Model
             }
         }
 
-
         public double Amount
         {
             private set
             {
-
                 if (value <= 0 || value > double.MaxValue)
-                {
+
                     throw new System.Exception(ExceptionMessages.AmountNull);
-                }
-                else
-                {
-                    _amount = value;
-                }
+
+                _amount = value;
+
             }
 
             get
@@ -90,52 +79,37 @@ namespace OperatorOverloading.Model
                 return _amount;
             }
 
-
         }
 
         //overload + operator to add two money objects
         public static Money operator +(Money money1, Money money2) //operator overloading
         {
             if (money1 == null || money2 == null)
-            {
+
                 throw new System.Exception(ExceptionMessages.AmountNull);
-            }
-            else
-            {
-                if (string.Equals(money1.Currency, money2.Currency, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    double totalAmount = money1.Amount + money2.Amount;
 
+            if (string.Equals(money1.Currency, money2.Currency, StringComparison.InvariantCultureIgnoreCase) == false)
 
+                throw new Exception(ExceptionMessages.CurrencyMismatch);
 
-                    if (double.IsPositiveInfinity(totalAmount))
-                    {
-                        throw new System.Exception(ExceptionMessages.AmountExceeds);
-                    }
+            double totalAmount = money1.Amount + money2.Amount;
 
-                    else
-                    {
+            if (double.IsPositiveInfinity(totalAmount))
 
-                        return new Money(totalAmount, money1.Currency);
-                    }
-                }
-                else
-                {
-                    //Cons                    ole.WriteLine("Performing Currency Conversion");
-                    //if(string.Equals(money1.Currency,"usd",StringComparison.InvariantCultureIgnoreCase))
-                    //{
-                    //    money1.Convert(money1.Currency,          
-                    //}
-                    throw new Exception(ExceptionMessages.CurrencyMismatch);
-                }
-            }
+                throw new System.Exception(ExceptionMessages.AmountExceeds);
+
+            return new Money(totalAmount, money1.Currency);
+
         }
 
-
     }
-
-
 }
+
+
+
+
+
+
 
 
 
