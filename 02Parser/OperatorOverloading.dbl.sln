@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.dbl", "OperatorOverloading.dbl\OperatorOverloading.dbl.csproj", "{92947334-3D37-465A-A361-E0F52B1922C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Model", "OperatorOverloading.Model\OperatorOverloading.Model.csproj", "{14AC5889-D887-4358-99BC-17BE069C6109}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Host", "OperatorOverloading.Host\OperatorOverloading.Host.csproj", "{4856BFBA-8052-4E17-8067-C31AF342B860}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92947334-3D37-465A-A361-E0F52B1922C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92947334-3D37-465A-A361-E0F52B1922C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92947334-3D37-465A-A361-E0F52B1922C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92947334-3D37-465A-A361-E0F52B1922C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14AC5889-D887-4358-99BC-17BE069C6109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14AC5889-D887-4358-99BC-17BE069C6109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14AC5889-D887-4358-99BC-17BE069C6109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14AC5889-D887-4358-99BC-17BE069C6109}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4856BFBA-8052-4E17-8067-C31AF342B860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4856BFBA-8052-4E17-8067-C31AF342B860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4856BFBA-8052-4E17-8067-C31AF342B860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4856BFBA-8052-4E17-8067-C31AF342B860}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
