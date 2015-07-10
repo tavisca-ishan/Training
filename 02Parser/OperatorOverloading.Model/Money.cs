@@ -99,33 +99,6 @@ namespace OperatorOverloading.Model
             double exchangeRates2 = p.Parse(sourceCurrency, targetCurrency);
             return exchangeRates2;
         }
-
-
-        //overload + operator to add two money objects
-        /* public static Money operator +(Money money1, Money money2) //operator overloading
-         {
-             if (money1 == null || money2 == null)
-
-                 throw new System.Exception(ExceptionMessages.AmountNull);
-
-             if (string.Equals(money1.Currency, money2.Currency, StringComparison.InvariantCultureIgnoreCase) == false)
-
-                 throw new Exception(ExceptionMessages.CurrencyMismatch);
-
-             double totalAmount = money1.Amount + money2.Amount;
-
-             if (double.IsPositiveInfinity(totalAmount))
-
-                 throw new System.Exception(ExceptionMessages.AmountExceeds);
-
-             return new Money(totalAmount, money1.Currency);
-
-         }*/
-
-
-
-
-
     }
 }
 
