@@ -44,9 +44,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OperatorOverloading.dbl\OperatorOverloading.dbl.csproj">
+    <ProjectReference Include="..\OperatorOverloading.dbl\OperatorOverloading.Dbl.csproj">
       <Project>{92947334-3d37-465a-a361-e0f52b1922c4}</Project>
-      <Name>OperatorOverloading.dbl</Name>
+      <Name>OperatorOverloading.Dbl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.dbl", "OperatorOverloading.dbl\OperatorOverloading.dbl.csproj", "{92947334-3D37-465A-A361-E0F52B1922C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Dbl", "OperatorOverloading.dbl\OperatorOverloading.Dbl.csproj", "{92947334-3D37-465A-A361-E0F52B1922C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Model", "OperatorOverloading.Model\OperatorOverloading.Model.csproj", "{14AC5889-D887-4358-99BC-17BE069C6109}"
 EndProject
