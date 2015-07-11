@@ -17,23 +17,22 @@ namespace OperatorOverloading.Host
                 Console.WriteLine("Performing Currency Conversion");
                 Console.WriteLine("Enter Amount to be converted and Source Currency");
 
-                Money money1 = new Money(Console.ReadLine());//in format "100 USD"
+                Money moneyOne = new Money(Console.ReadLine());//in format "100 USD"
 
                 Console.WriteLine("Target Currency");
 
-                Money money2 = new Money(Console.ReadLine());//in format "INR"
+                Money moneyTwo = new Money(Console.ReadLine());//in format "INR"
 
-                double getexchangeRates1 = new Money().ConvertCurrency(money1.Currency, money2.Currency);
+                double getexchangeRates1 = new Money().ConvertCurrency(moneyOne.Currency, moneyTwo.Currency);
 
-                Console.WriteLine("Exchange Rates:One " + money1.Currency + " equal to= " + getexchangeRates1 + " " + money2.Currency);
+                Console.WriteLine("Exchange Rates:One " + moneyOne.Currency + " equal to= " + getexchangeRates1 + " " + moneyTwo.Currency);
 
-                Console.WriteLine("Converted Amount in " + money2.Currency + "= " + (getexchangeRates1 * money1.Amount) + " " + money2.Currency);
+                Console.WriteLine("Converted Amount in " + moneyTwo.Currency + "= " + (getexchangeRates1 * moneyOne.Amount) + " " + moneyTwo.Currency);
             }//end of try block
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }//end of catch block
-
             Console.ReadKey();
 
 

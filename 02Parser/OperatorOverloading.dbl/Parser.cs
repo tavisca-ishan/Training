@@ -25,10 +25,10 @@ namespace OperatorOverloading.dbl
             initialsplitString[1] = "";
             string[] currencysplitString = initialsplitString[2].Split(',');
 
-            double getexchangeFactor1 = new Conversion().ExchangeFactor(sourceCurrency, currencysplitString);
-            double getexchangeFactor2 = new Conversion().ExchangeFactor(targetCurrency, currencysplitString);
+            double getexchangeFactorOne = new Conversion().ExchangeFactor(sourceCurrency, currencysplitString);
+            double getexchangeFactorTwo = new Conversion().ExchangeFactor(targetCurrency, currencysplitString);
 
-            return (getexchangeFactor2 / getexchangeFactor1); //returning exchange rates 
+            return (getexchangeFactorTwo / getexchangeFactorOne); //returning exchange rates 
 
         }
     }

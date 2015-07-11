@@ -10,7 +10,6 @@ namespace OperatorOverloading.Model
     {
         private string _currency; //recieves currency
         private double _amount; //recieves amount
-
         /// <summary>
         /// 
         /// </summary>
@@ -88,16 +87,12 @@ namespace OperatorOverloading.Model
         {
             sourceCurrency = sourceCurrency.ToUpper();
             targetCurrency = targetCurrency.ToUpper();
-            /*if (sourceCurrency == null || targetCurrency == null)
-
-                throw new System.Exception("Null Currency Entered!Enter Some type of Currency");*/
 
             if (sourceCurrency.Length != 3 || targetCurrency.Length != 3)
-
                 throw new System.Exception("Invalid Format Of Currency!Enter Currency of length 3");
             Parser p = new Parser();
-            double exchangeRates2 = p.Parse(sourceCurrency, targetCurrency);
-            return exchangeRates2;
+            double exchangeRatesTwo = p.Parse(sourceCurrency, targetCurrency);
+            return exchangeRatesTwo;
         }
     }
 }
