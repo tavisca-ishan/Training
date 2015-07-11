@@ -21,13 +21,14 @@ namespace OperatorOverloading.Host
 
                 Console.WriteLine("Target Currency");
 
-                Money moneyTwo = new Money(Console.ReadLine());//in format "INR"
+                string targetCurrency=Console.ReadLine();//in format "INR"
+                
 
-                double getexchangeRates1 = new Money().ConvertCurrency(moneyOne.Currency, moneyTwo.Currency);
+                double getexchangeRates1 = new Money().ConvertCurrency(moneyOne.Currency,targetCurrency);
 
-                Console.WriteLine("Exchange Rates:One " + moneyOne.Currency + " equal to= " + getexchangeRates1 + " " + moneyTwo.Currency);
+                Console.WriteLine("Exchange Rates:One " + moneyOne.Currency + " equal to= " + getexchangeRates1 + " " + targetCurrency);
 
-                Console.WriteLine("Converted Amount in " + moneyTwo.Currency + "= " + (getexchangeRates1 * moneyOne.Amount) + " " + moneyTwo.Currency);
+                Console.WriteLine("Converted Amount in " + targetCurrency + "= " + (getexchangeRates1 * moneyOne.Amount) + " " + targetCurrency);
             }//end of try block
             catch (Exception e)
             {
