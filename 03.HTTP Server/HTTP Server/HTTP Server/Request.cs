@@ -18,7 +18,7 @@ namespace HTTP_Server
         private Request(String type, String url, String host)//Request class cannot be instantiated from another class 
         {
         }
-        public static GetRequest(String clientRequest)
+        public static  String GetRequest(String clientRequest)
         {
             if(String.IsNullOrEmpty(clientRequest))
             {
