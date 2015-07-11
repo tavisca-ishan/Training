@@ -6,25 +6,20 @@ using System.Threading.Tasks;
 
 namespace OperatorOverloading.Dbl
 {
-    public class Conversion : IParser
+    public class Conversion : ICurrencyConvertor
     {
         //performs currency conversion
-        public double ExchangeFactor(string currency, string[] currencysplitString)
+        public double GetConversionRate(string currency, string[] currencysplitString)
         {
-            int i = 0;
-            if (currency.Equals("USD"))
-                return 1;
-
-
-            for (i = 0; i < currencysplitString.Length - 1; i++)
+            int count;
+            for (count = 0; count < currencysplitString.Length - 1; count++)
             {
-
-                if (currencysplitString[i].Contains(currency) == true)
+                if (currencysplitString[count].Contains(currency) == true)
                     break;
             }
             double number;
 
-            string[] finalsplitString = currencysplitString[i].Split(':');
+            string[] finalsplitString = currencysplitString[count].Split(':');
 
             double.TryParse(finalsplitString[1], out number);
             return number;

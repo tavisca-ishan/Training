@@ -15,6 +15,7 @@ namespace OperatorOverloading.Model
         /// </summary>
         /// <param name="moneyString">Money represented as string eg 100 USD</param>
         /// 
+        public Money() { }
         public Money(string moneyString)
         {
             if (string.IsNullOrWhiteSpace(moneyString))
@@ -25,15 +26,12 @@ namespace OperatorOverloading.Model
                 if (split.Length != 2)
                     throw new System.Exception(ExceptionMessages.InvalidFormat);
 
-
                 double amount;
                 if ((double.TryParse(split[0], out amount) == false))
                     throw new System.Exception(ExceptionMessages.InvalidFormat);
 
-
                 Amount = amount;
-                Currency = split[1];
-
+                Currency =split[1].ToUpper();
             }
         }
 
@@ -79,16 +77,15 @@ namespace OperatorOverloading.Model
 
         }
         //code for currency conversion
-        public double ConvertCurrency(string sourceCurrency, string targetCurrency)
+        public Money Convert(string targetCurrency)
         {
-            sourceCurrency = sourceCurrency.ToUpper();
             targetCurrency = targetCurrency.ToUpper();
-
-            if (sourceCurrency.Length != 3 || targetCurrency.Length != 3)
+            if(_currency.Length != 3 || targetCurrency.Length != 3)
                 throw new System.Exception("Invalid Format Of Currency!Enter Currency of length 3");
             Parser p = new Parser();
-            double exchangeRatesTwo = p.Parse(sourceCurrency, targetCurrency);
-            return exchangeRatesTwo;
+            double exchangeRatesTwo = p.Parse(_currency, targetCurrency);
+            return new Money(exchangeRatesTwo * Amount, targetCurrency);
+                
         }
     }
 }

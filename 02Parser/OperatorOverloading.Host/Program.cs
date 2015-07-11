@@ -19,16 +19,13 @@ namespace OperatorOverloading.Host
 
                 Money moneyOne = new Money(Console.ReadLine());//in format "100 USD"
 
-                Console.WriteLine("Target Currency");
+                Console.WriteLine("Enter Target Currency");
 
-                string targetCurrency=Console.ReadLine();//in format "INR"
-                
+                string targetCurrency = Console.ReadLine();//in format "INR"
 
-                double getexchangeRates1 = new Money().ConvertCurrency(moneyOne.Currency,targetCurrency);
+                var getexchangeRates1 = moneyOne.Convert(targetCurrency);
 
-                Console.WriteLine("Exchange Rates:One " + moneyOne.Currency + " equal to= " + getexchangeRates1 + " " + targetCurrency);
-
-                Console.WriteLine("Converted Amount in " + targetCurrency + "= " + (getexchangeRates1 * moneyOne.Amount) + " " + targetCurrency);
+                Console.WriteLine("Converted Amount in " + targetCurrency + "= " + moneyOne.Amount + " " + targetCurrency);
             }//end of try block
             catch (Exception e)
             {

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace OperatorOverloading.Dbl
 {
-    interface IParser
+    interface ICurrencyConvertor
     {
-        double ExchangeFactor(string currency, string[] currencysplitString);
+        double GetConversionRate(string currency, string[] currencysplitString);
     }
 }

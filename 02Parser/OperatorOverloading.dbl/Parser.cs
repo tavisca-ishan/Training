@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace OperatorOverloading.Dbl
 {
@@ -10,23 +11,20 @@ namespace OperatorOverloading.Dbl
     {
         public double Parse(string sourceCurrency, string targetCurrency)
         {
-            // Read the file and display it line by line.
-            string fileData = "";
-            string line;
-            System.IO.StreamReader file = new System.IO.StreamReader(@"D:\Training\02 Parser\OperatorOverloading.dbl\ParseFile.txt");
-            while ((line = file.ReadLine()) != null)
-            {
-                fileData += line;
-
-            }
-            file.Close();
-            string[] initialsplitString = fileData.Split('{');
+            // Read the file 
+           
+           string path=ConfigurationManager.AppSettings["FilePath"];
+            String file = System.IO.File.ReadAllText(path);
+                 
+            string[] initialsplitString = file.Split('{');
+            if (initialsplitString[0] == null || initialsplitString[1] == null || initialsplitString[2] == null)
+                throw new System.Exception("Invalid JSON Format");
             initialsplitString[0] = "";
             initialsplitString[1] = "";
             string[] currencysplitString = initialsplitString[2].Split(',');
 
-            double getexchangeFactorOne = new Conversion().ExchangeFactor(sourceCurrency, currencysplitString);
-            double getexchangeFactorTwo = new Conversion().ExchangeFactor(targetCurrency, currencysplitString);
+            double getexchangeFactorOne = new Conversion().GetConversionRate(sourceCurrency, currencysplitString);
+            double getexchangeFactorTwo = new Conversion().GetConversionRate(targetCurrency, currencysplitString);
 
             return (getexchangeFactorTwo / getexchangeFactorOne); //returning exchange rates 
 
