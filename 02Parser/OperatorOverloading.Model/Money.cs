@@ -31,7 +31,7 @@ namespace OperatorOverloading.Model
                     throw new System.Exception(ExceptionMessages.InvalidFormat);
 
                 Amount = amount;
-                Currency =split[1].ToUpper();
+                Currency = split[1].ToUpper();
             }
         }
 
@@ -80,12 +80,13 @@ namespace OperatorOverloading.Model
         public Money Convert(string targetCurrency)
         {
             targetCurrency = targetCurrency.ToUpper();
-            if(_currency.Length != 3 || targetCurrency.Length != 3)
+            if (_currency.Length != 3 || targetCurrency.Length != 3)
                 throw new System.Exception("Invalid Format Of Currency!Enter Currency of length 3");
             Parser p = new Parser();
             double exchangeRatesTwo = p.Parse(_currency, targetCurrency);
-            return new Money(exchangeRatesTwo * Amount, targetCurrency);
-                
+            Amount = exchangeRatesTwo * Amount;
+            return new Money(Amount,targetCurrency);
+
         }
     }
 }
