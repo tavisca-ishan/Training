@@ -14,7 +14,7 @@ namespace OperatorOverloading.Dbl
             // Read the file 
            
            string path=ConfigurationManager.AppSettings["FilePath"];
-           //Console.WriteLine("hii: "+path);
+           
             String file = System.IO.File.ReadAllText(path);
                  
             string[] initialsplitString = file.Split('{');
