@@ -3,50 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+using System.IO;
 
-namespace OperatorOverloading.dbl
+namespace OperatorOverloading.DBL
 {
-    class Parse : IParser
+    public class Parser
     {
-        Dictionary<string, double> exchangeRates = new Dictionary<string, double>();
-        public string Source
+        Conversion conversion = new Conversion();
+        public double Parse(string sourceCurrency, string targetCurrency)
         {
-            get;
-            set;
-        }
+            // Read the file 
 
-        public Dictionary<string, double> ParseFile(string jsonBuilder)
-        {
-            if (jsonBuilder == null)
-            {
-                throw new NullReferenceException("Null Input String");
-            }
-            string data = jsonBuilder;
-            string[] splitData = data.Split('{');
-            string tempData = splitData[1];
-            string[] tempSplit1 = tempData.Split(',');
-            tempSplit1 = tempSplit1[tempSplit1.Length - 2].Split(':'); 
-            Source = tempSplit1[1];
+            string path = ConfigurationManager.AppSettings["FilePath"];
 
-            data = splitData[2];
-            data = data.Replace('}', ' ');
-            data = data.Trim();
-            splitData = data.Split(',');
-            for (int i = 0; i < splitData.Length; i++)
-            {
-                splitData[i] = splitData[i].Replace("USD", "");
-                tempSplit1 = splitData[i].Split(':');
-                data = tempSplit1[0];
-                double value = 0.0;
-                if (double.TryParse(tempSplit1[1], out value) == false)
-                    throw new Exception("Invalid Number.");
-                data = data.Remove(data.Length - 1, 1);
-                data = data.Remove(0, 1);
+            if (File.Exists(path) == false) throw new Exception("File does not exists");
 
-                exchangeRates.Add(data, value);
-                Console.WriteLine(data);
-            }
-            return exchangeRates;
+            String file = System.IO.File.ReadAllText(path);
+
+            string[] initialsplitString = file.Split('{');
+            if (initialsplitString[0] == null || initialsplitString[1] == null || initialsplitString[2] == null)
+                throw new System.Exception("Invalid JSON Format");
+            initialsplitString[0] = "";
+            initialsplitString[1] = "";
+            string[] currencysplitString = initialsplitString[2].Split(',');
+
+            double getexchangeFactorOne = conversion.GetConversionRate(sourceCurrency, currencysplitString);
+            double getexchangeFactorTwo = conversion.GetConversionRate(targetCurrency, currencysplitString);
+            return (getexchangeFactorTwo / getexchangeFactorOne); //returning exchange rates 
 
         }
     }

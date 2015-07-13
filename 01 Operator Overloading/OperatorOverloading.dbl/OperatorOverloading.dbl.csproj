@@ -7,8 +7,8 @@
     <ProjectGuid>{804E6E80-BE47-4637-8918-3A0EDC292961}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OperatorOverloading.dbl</RootNamespace>
-    <AssemblyName>OperatorOverloading.dbl</AssemblyName>
+    <RootNamespace>OperatorOverloading.DBL</RootNamespace>
+    <AssemblyName>OperatorOverloading.DBL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fetch.cs" />
-    <Compile Include="IParser.cs" />
+    <Compile Include="Conversion.cs" />
+    <Compile Include="ICurrencyConverter.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
