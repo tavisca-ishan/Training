@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAttributes.Host", "CustomAttributes\CustomAttributes.Host.csproj", "{2C72DB02-378A-49C6-B9D2-2D84421D4E4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAttributes.Model", "CustomAttributes.Model\CustomAttributes.Model.csproj", "{78070BC6-E513-4219-9600-87F4841CE387}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAttributes.Testing", "CustomAttributes.Testing\CustomAttributes.Testing.csproj", "{15AD8BEC-3F53-41D3-887D-21A6630917D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C72DB02-378A-49C6-B9D2-2D84421D4E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C72DB02-378A-49C6-B9D2-2D84421D4E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C72DB02-378A-49C6-B9D2-2D84421D4E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C72DB02-378A-49C6-B9D2-2D84421D4E4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78070BC6-E513-4219-9600-87F4841CE387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78070BC6-E513-4219-9600-87F4841CE387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78070BC6-E513-4219-9600-87F4841CE387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78070BC6-E513-4219-9600-87F4841CE387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15AD8BEC-3F53-41D3-887D-21A6630917D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15AD8BEC-3F53-41D3-887D-21A6630917D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15AD8BEC-3F53-41D3-887D-21A6630917D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15AD8BEC-3F53-41D3-887D-21A6630917D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
