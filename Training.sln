@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Model",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Host", "01 Operator Overloading\OperatorOverloading.Host\OperatorOverloading.Host.csproj", "{977E178B-A06C-45BE-A03D-13A81EEB37A6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Web Server", "02 Web Server", "{C8B5DBF0-78BE-49BE-873B-A0237702357B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer", "02WebServer\WebServer.csproj", "{F199D7AF-C2E0-4560-A3D7-EDAA183F03EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,10 @@ Global
 		{977E178B-A06C-45BE-A03D-13A81EEB37A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{977E178B-A06C-45BE-A03D-13A81EEB37A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{977E178B-A06C-45BE-A03D-13A81EEB37A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F199D7AF-C2E0-4560-A3D7-EDAA183F03EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F199D7AF-C2E0-4560-A3D7-EDAA183F03EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F199D7AF-C2E0-4560-A3D7-EDAA183F03EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F199D7AF-C2E0-4560-A3D7-EDAA183F03EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,5 +43,6 @@ Global
 		{804E6E80-BE47-4637-8918-3A0EDC292961} = {8031EBFD-474C-4114-954E-AD6192B0EB2D}
 		{5FBBD6AF-DA18-4FB8-917B-930E4B9DA33A} = {8031EBFD-474C-4114-954E-AD6192B0EB2D}
 		{977E178B-A06C-45BE-A03D-13A81EEB37A6} = {8031EBFD-474C-4114-954E-AD6192B0EB2D}
+		{F199D7AF-C2E0-4560-A3D7-EDAA183F03EC} = {C8B5DBF0-78BE-49BE-873B-A0237702357B}
 	EndGlobalSection
 EndGlobal
