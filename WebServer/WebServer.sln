@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer.Host", "WebServer\WebServer.Host.csproj", "{80B70758-4F5F-481D-9714-0EF52EA82627}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer.Model", "WebServer.Model\WebServer.Model.csproj", "{3EB9218F-3333-4661-9344-B4A8F792EB88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80B70758-4F5F-481D-9714-0EF52EA82627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80B70758-4F5F-481D-9714-0EF52EA82627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80B70758-4F5F-481D-9714-0EF52EA82627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80B70758-4F5F-481D-9714-0EF52EA82627}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EB9218F-3333-4661-9344-B4A8F792EB88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EB9218F-3333-4661-9344-B4A8F792EB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EB9218F-3333-4661-9344-B4A8F792EB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EB9218F-3333-4661-9344-B4A8F792EB88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
