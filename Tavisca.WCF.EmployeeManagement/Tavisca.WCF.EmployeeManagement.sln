@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.WCF.EmployeeManagement", "Tavisca.WCF.EmployeeManagement\Tavisca.WCF.EmployeeManagement.csproj", "{2EAB13EF-F0A6-41A9-A658-DFFB4A7DEAF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.WCF.ServiceLayer", "Tavisca.WCF.ServiceLayer\Tavisca.WCF.ServiceLayer.csproj", "{35DF2540-55F2-4E0C-A460-A992E4FC6456}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.WCF.BusinessLayer", "Tavisca.WCF.BusinessLayer\Tavisca.WCF.BusinessLayer.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.WCF.DataAccessLayer", "Tavisca.WCF.DataAccessLayer\Tavisca.WCF.DataAccessLayer.csproj", "{6FDEAE60-A2D4-4B8B-9F32-E4B6594CA7B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EAB13EF-F0A6-41A9-A658-DFFB4A7DEAF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EAB13EF-F0A6-41A9-A658-DFFB4A7DEAF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EAB13EF-F0A6-41A9-A658-DFFB4A7DEAF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EAB13EF-F0A6-41A9-A658-DFFB4A7DEAF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35DF2540-55F2-4E0C-A460-A992E4FC6456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35DF2540-55F2-4E0C-A460-A992E4FC6456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35DF2540-55F2-4E0C-A460-A992E4FC6456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35DF2540-55F2-4E0C-A460-A992E4FC6456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FDEAE60-A2D4-4B8B-9F32-E4B6594CA7B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FDEAE60-A2D4-4B8B-9F32-E4B6594CA7B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FDEAE60-A2D4-4B8B-9F32-E4B6594CA7B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FDEAE60-A2D4-4B8B-9F32-E4B6594CA7B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

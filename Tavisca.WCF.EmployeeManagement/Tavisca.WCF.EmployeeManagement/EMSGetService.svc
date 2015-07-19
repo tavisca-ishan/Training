@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Tavisca.WCF.ServiceLayer.ServiceImplementation.EMSPostImplementation" CodeBehind="Tavisca.WCF.ServiceLayer" %>
