@@ -1,4 +1,6 @@
-﻿var height = 0;
+﻿var moveBy = 5;
+var timeout = 20;
+var height = 0;
 var width = 0;
 var yIndicator = false;
 var xIndicator = false;
@@ -7,16 +9,17 @@ var xPosition = 20;
 var yPosition = 20;
 
 function moveBall() {
-    height = window.innerHeight;
-    width = window.innerWidth;
-    document.getElementById("bouncingBall").style.top = yPosition;
-    document.getElementById("bouncingBall").style.left = xPosition;
-   // alert();
+    var e = document.getElementById("bouncingBall");
+    height = window.innerHeight - 60;
+    width = window.innerWidth - 60;
+    e.style.top = yPosition +'px';
+    e.style.left = xPosition +'px';
+
     if (yIndicator) {
-        yPosition = yPosition + 5;
+        yPosition = yPosition + moveBy;
     }
     else {
-        yPosition = yPosition - 5;
+        yPosition = yPosition - moveBy;
     }
     if (yPosition < 0) {
         yIndicator = true;
@@ -27,10 +30,10 @@ function moveBall() {
         yPosition = (height);
     }
     if (xIndicator) {
-        xPosition = xPosition + 5;
+        xPosition = xPosition + moveBy;
     }
     else {
-        xPosition = xPosition - 5;
+        xPosition = xPosition - moveBy;
     }
     if (xPosition < 0) {
         xIndicator = true;
@@ -40,7 +43,11 @@ function moveBall() {
         xIndicator = false;
         xPosition = (width);
     }
+  
 }
 function start() {
-    interval = setInterval(moveBall, 10);
+   
+    window.setInterval(moveBall, timeout);
 }
+
+window.onload = start;
