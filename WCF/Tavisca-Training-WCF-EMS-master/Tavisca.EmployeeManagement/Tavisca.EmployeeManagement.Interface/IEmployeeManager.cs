@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Tavisca.EmployeeManagement.Model;
+
+namespace Tavisca.EmployeeManagement.Interface
+{
+    public interface IEmployeeManager
+    {
+        Employee Get(string employeeId);
+
+        List<Employee> GetAll();
+
+        List<Remark> GetRemarks(string emloyeeId);
+
+        Pagination GetPageRemarks(string employeeId, string pageNumber);
+
+        
+    }
+}
