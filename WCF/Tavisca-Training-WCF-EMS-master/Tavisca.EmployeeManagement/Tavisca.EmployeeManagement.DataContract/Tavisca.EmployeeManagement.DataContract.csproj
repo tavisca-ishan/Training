@@ -43,7 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UpdatePasswordResponse.cs" />
+    <Compile Include="PaginationResponse.cs" />
+    <Compile Include="RemarkListResponse.cs" />
+    <Compile Include="EmployeeListResponse.cs" />
+    <Compile Include="EmployeeResponse.cs" />
     <Compile Include="Pagination.cs" />
+    <Compile Include="RemarkResponse.cs" />
+    <Compile Include="Result.cs" />
+    <Compile Include="Status.cs" />
     <Compile Include="UpdatePassword.cs" />
     <Compile Include="Credentials.cs" />
     <Compile Include="Employee.cs" />

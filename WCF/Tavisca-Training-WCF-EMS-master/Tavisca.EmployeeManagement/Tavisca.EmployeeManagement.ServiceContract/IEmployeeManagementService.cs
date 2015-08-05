@@ -13,15 +13,15 @@ namespace Tavisca.EmployeeManagement.ServiceContract
     public interface IEmployeeManagementService
     {
         [WebInvoke(Method="POST", UriTemplate="/employee", RequestFormat= WebMessageFormat.Json, ResponseFormat= WebMessageFormat.Json)]
-        Employee Create(Employee employee);
+        EmployeeResponse Create(Employee employee);
 
         [WebInvoke(Method = "POST", UriTemplate = "/employee/{employeeId}/remark", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        Remark AddRemark(string employeeId, Remark remark);  
+        RemarkResponse AddRemark(string employeeId, Remark remark);  
 
         [WebInvoke(Method = "POST", UriTemplate = "/login", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        Employee Authenticate(Credentials credentials);
+        EmployeeResponse Authenticate(Credentials credentials);
 
         [WebInvoke(Method = "POST", UriTemplate = "/changePassword", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        int UpdatePassword(UpdatePassword change);
+        UpdatePasswordResponse UpdatePassword(UpdatePassword change);
     }
 }

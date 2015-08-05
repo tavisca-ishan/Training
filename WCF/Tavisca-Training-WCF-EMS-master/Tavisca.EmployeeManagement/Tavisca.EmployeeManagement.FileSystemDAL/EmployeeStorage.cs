@@ -94,18 +94,22 @@ namespace Tavisca.EmployeeManagement.FileStorage
 
                     conEmployee.Open();
                     SqlDataReader reader = command.ExecuteReader();
-
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        emp.Id = reader[0].ToString();
-                        emp.Title = reader[1].ToString();
-                        emp.FirstName = reader[2].ToString();
-                        emp.LastName = reader[3].ToString();
-                        emp.Email = reader[4].ToString();
-                        emp.Phone = reader[5].ToString();
-                        emp.JoiningDate = Convert.ToDateTime(reader[6]);
-                        emp.Password = reader[7].ToString();
+                        while (reader.Read())
+                        {
+                            emp.Id = reader[0].ToString();
+                            emp.Title = reader[1].ToString();
+                            emp.FirstName = reader[2].ToString();
+                            emp.LastName = reader[3].ToString();
+                            emp.Email = reader[4].ToString();
+                            emp.Phone = reader[5].ToString();
+                            emp.JoiningDate = Convert.ToDateTime(reader[6]);
+                            emp.Password = reader[7].ToString();
+                        }
                     }
+                    else
+                        throw new System.Exception("Requested Data not found!");
                     reader.Close();
                 }
                 conEmployee.Close();
@@ -122,14 +126,18 @@ namespace Tavisca.EmployeeManagement.FileStorage
                     command.Parameters["@emp_id"].Value = employeeId;
 
                     SqlDataReader reader = command.ExecuteReader();
-
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        Model.Remark remark = new Model.Remark();
-                        remark.Text = reader[1].ToString();
-                        remark.CreateTimeStamp = Convert.ToDateTime(reader[2]);
-                        remarkList.Add(remark);
+                        while (reader.Read())
+                        {
+                            Model.Remark remark = new Model.Remark();
+                            remark.Text = reader[1].ToString();
+                            remark.CreateTimeStamp = Convert.ToDateTime(reader[2]);
+                            remarkList.Add(remark);
+                        }
                     }
+                    else
+                        throw new System.Exception("Requested Data not found!");
                     emp.Remarks = remarkList;
                     reader.Close();
                 }
@@ -159,13 +167,18 @@ namespace Tavisca.EmployeeManagement.FileStorage
 
                     connect.Open();
                     SqlDataReader remarkReader = command.ExecuteReader();
-                    while (remarkReader.Read())
+                    if (remarkReader.Read())
                     {
-                        Model.Remark remark = new Model.Remark();
-                        remark.Text = remarkReader[1].ToString();
-                        remark.CreateTimeStamp = Convert.ToDateTime(remarkReader[2]);
-                        remarkList.Add(remark);
+                        while (remarkReader.Read())
+                        {
+                            Model.Remark remark = new Model.Remark();
+                            remark.Text = remarkReader[1].ToString();
+                            remark.CreateTimeStamp = Convert.ToDateTime(remarkReader[2]);
+                            remarkList.Add(remark);
+                        }
                     }
+                    else
+                        throw new System.Exception("Requested Data not found!");
                     remarkReader.Close();
                 }
                 connect.Close();
@@ -192,19 +205,23 @@ namespace Tavisca.EmployeeManagement.FileStorage
                     command.CommandType = CommandType.StoredProcedure;
                     conAllEmployee.Open();
                     SqlDataReader reader = command.ExecuteReader();
-
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        allEmployee.Id = reader[0].ToString();
-                        allEmployee.Title = reader[1].ToString();
-                        allEmployee.FirstName = reader[2].ToString();
-                        allEmployee.LastName = reader[3].ToString();
-                        allEmployee.Email = reader[4].ToString();
-                        allEmployee.Phone = reader[5].ToString();
-                        allEmployee.JoiningDate = Convert.ToDateTime(reader[6]);
-                        allEmployee.Password = reader[7].ToString();
-                        employeeList.Add(allEmployee);
+                        while (reader.Read())
+                        {
+                            allEmployee.Id = reader[0].ToString();
+                            allEmployee.Title = reader[1].ToString();
+                            allEmployee.FirstName = reader[2].ToString();
+                            allEmployee.LastName = reader[3].ToString();
+                            allEmployee.Email = reader[4].ToString();
+                            allEmployee.Phone = reader[5].ToString();
+                            allEmployee.JoiningDate = Convert.ToDateTime(reader[6]);
+                            allEmployee.Password = reader[7].ToString();
+                            employeeList.Add(allEmployee);
+                        }
                     }
+                    else
+                        throw new System.Exception("Requested Data not found!");
                     reader.Close();
                 }
                 conAllEmployee.Close();
@@ -248,7 +265,7 @@ namespace Tavisca.EmployeeManagement.FileStorage
                     }
                     else
                     {
-                        return null;
+                        throw new System.Exception("Requested Data not found!");
                     }
                     conEmployee.Close();
                 }
@@ -285,8 +302,10 @@ namespace Tavisca.EmployeeManagement.FileStorage
                         reader.Close();
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.Add(new SqlParameter("@EmailId", SqlDbType.NVarChar));
+                        command.Parameters.Add(new SqlParameter("@OldPassword", SqlDbType.NVarChar));
                         command.Parameters.Add(new SqlParameter("@NewPassword", SqlDbType.NVarChar));
                         command.Parameters["@EmailId"].Value = change.EmailId;
+                        command.Parameters["@OldPassword"].Value = change.OldPassword;
                         command.Parameters["@NewPassword"].Value = change.NewPassword;
                         command.ExecuteNonQuery();
                         conEmployee.Close();
