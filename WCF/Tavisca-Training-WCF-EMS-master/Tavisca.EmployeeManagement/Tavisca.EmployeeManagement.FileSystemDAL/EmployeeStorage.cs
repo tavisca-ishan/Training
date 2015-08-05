@@ -265,7 +265,7 @@ namespace Tavisca.EmployeeManagement.FileStorage
                     }
                     else
                     {
-                        throw new System.Exception("Requested Data not found!");
+                        throw new System.Exception("Invalid User Credentials!");
                     }
                     conEmployee.Close();
                 }

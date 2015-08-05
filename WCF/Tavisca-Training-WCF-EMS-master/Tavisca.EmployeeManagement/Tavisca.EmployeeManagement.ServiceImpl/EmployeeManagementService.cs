@@ -91,6 +91,7 @@ namespace Tavisca.EmployeeManagement.ServiceImpl
            {
                Exception newEx;
                var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
+               response.ResponseStatus.Code = "500";
                response.ResponseStatus.Message = ex.Message;
                return response;
            }

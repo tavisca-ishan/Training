@@ -17,13 +17,11 @@
     <h3>Change Password :</h3>
     <table class="ui-accordion">
         <tr>
-            <td class="auto-style2">UserId :</td>
+            <td class="auto-style2">&nbsp;</td>
             <td class="auto-style3">
-                <asp:TextBox ID="TextBoxUserId" runat="server" TextMode="Email" Width="250px" OnTextChanged="TextBoxUserId_TextChanged" ValidationGroup="Change Password"></asp:TextBox>
-            </td>
+                &nbsp;</td>
             <td>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxUserId" ErrorMessage="Enter User's Email Id" ForeColor="Red"></asp:RequiredFieldValidator>
-            </td>
+                &nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style2">Current Password :</td>

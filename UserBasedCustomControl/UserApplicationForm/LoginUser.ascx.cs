@@ -26,20 +26,25 @@ namespace UserApplicationForm
             credentials.EmailId = TextBoxUserId.Text;
             credentials.Password = TextBoxPass.Text;
             HttpClient client = new HttpClient();
-            var response = client.UploadData<Credentials, Employee>("http://localhost:53412/EmployeeManagementService.svc/login", credentials);
-            cookie["EmpId"] = response.Id;
-            cookie["EmailId"] = response.Email;
-            cookie["Title"] = response.Title;
-            cookie["FirstName"] = response.FirstName;
-            Response.Cookies.Add(cookie);
-            if (response.Equals(null))
-              Response.Write("Invalid User Credentials!");
-
-            if (string.Equals(response.Title.Trim(),"hr",StringComparison.OrdinalIgnoreCase))
-                Response.Redirect("http://localhost:51974/HRPage.aspx");
-
+            var response = client.UploadData<Credentials, EmployeeResponse>("http://localhost:53412/EmployeeManagementService.svc/login", credentials);
+            if (response.ResponseStatus.Code == "500")
+            {
+                Response.Write(response.ResponseStatus.Message);
+            }
             else
-                Response.Redirect("http://localhost:51974/EmployeePage.aspx");
-        }
+            {
+                cookie["EmpId"] = response.RequestedEmployee.Id;
+                cookie["EmailId"] = response.RequestedEmployee.Email;
+                cookie["Title"] = response.RequestedEmployee.Title;
+                cookie["FirstName"] = response.RequestedEmployee.FirstName;
+                Response.Cookies.Add(cookie);
+
+                if (string.Equals(response.RequestedEmployee.Title.Trim(), "hr", StringComparison.OrdinalIgnoreCase))
+                    Response.Redirect("http://localhost:51974/HRPage.aspx");
+
+                else
+                    Response.Redirect("http://localhost:51974/EmployeePage.aspx");
+            }
         }
     }
+}

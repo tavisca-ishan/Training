@@ -23,31 +23,28 @@ namespace UserApplicationForm
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)          
+        protected void Button1_Click(object sender, EventArgs e)
         {
             UpdatePassword change = new UpdatePassword();
 
-            change.EmailId = TextBoxUserId.Text;
+            change.EmailId = Request.Cookies["User Credentials"]["EmailId"];
             change.OldPassword = TextBoxOldPass.Text;
             change.NewPassword = TextBoxNewPass.Text;
 
-            MemoryStream stream1 = new MemoryStream();
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(UpdatePassword));
-            ser.WriteObject(stream1, change);
-            stream1.Position = 0;
-            StreamReader sr = new StreamReader(stream1);
-            // Console.Write("JSON form of Person object: ");
-            string d = sr.ReadToEnd();
-            var client = new WebClient();
-            client.Headers.Add("Content-Type", "application/json");
-            var response = client.UploadString("http://localhost:53412/EmployeeManagementService.svc/changepassword", "POST", d);
-            if (response == null)
-                Response.Write("Invalid Current Password Entered");
-            else
-                Response.Write("Password Changed Successfully!");
-            
+            //MemoryStream stream1 = new MemoryStream();
+            //DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(UpdatePassword));
+            //ser.WriteObject(stream1, change);
+            //stream1.Position = 0;
+            //StreamReader sr = new StreamReader(stream1);
+            //// Console.Write("JSON form of Person object: ");
+            //string d = sr.ReadToEnd();
+            //var client = new WebClient();
+            //client.Headers.Add("Content-Type", "application/json");
+            HttpClient client = new HttpClient();
+            var response = client.UploadData<UpdatePassword, UpdatePasswordResponse>("http://localhost:53412/EmployeeManagementService.svc/changepassword", change);
+            if (response.ResponseStatus.Code == "500")
+                Response.Write(response.ResponseStatus.Message);
         }
-
         protected void TextBoxUserId_TextChanged(object sender, EventArgs e)
         {
 
