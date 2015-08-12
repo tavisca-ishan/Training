@@ -30,40 +30,42 @@ namespace RoleBasedMVC.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult AuthenticateUser(Credentials credentials)
-        {
-            //EmployeeResponse response = null;
-            var response = Credentials.Authenticate(credentials);
-            if (response.ResponseStatus.Code == "500")
-            {
-                ModelState.AddModelError("", "Incorrect User-EmaiId or Password!");
-                return View("Login");
-            }
-            else
-            {
-                CreateAuthenticationTicket(credentials);
-                if (string.Equals(response.RequestedEmployee.Title, "hr", StringComparison.OrdinalIgnoreCase))
+        //public ActionResult AuthenticateUser(Credentials credentials)
+        //{
+        //    //EmployeeResponse response = null;
+        //    //var employee = new Employee();
+        //    var response = Credentials.Authenticate(credentials);
+        //    if (response.ResponseStatus.Code == "500")
+        //    {
+        //        ModelState.AddModelError("", "Incorrect User-EmaiId or Password!");
+        //        return View("Login");
+        //    }
+        //    else
+        //    {
+              
+        //        CreateAuthenticationTicket(response.RequestedEmployee);
+        //        if (HttpContext.User.IsInRole("hr") == true)
+        //            return View("HRHome");
+        //        else
+        //            return View("EmployeeHome");
+        //    }
+        //}
 
-                    return View("HRHome");
-
-                else
-                {
-                    return View("EmployeeHome");
-                }
-            }
-        }
-
-        public void CreateAuthenticationTicket(Credentials credentials)
+        public void CreateAuthenticationTicket(Employee requestedEmployee)
         {
 
             CustomPrincipalSerializedModel serializeModel = new CustomPrincipalSerializedModel();
-            serializeModel.EmailId = credentials.EmailId;
-            serializeModel.Password = credentials.Password;
+            serializeModel.Id = requestedEmployee.Id;
+            serializeModel.Title = requestedEmployee.Title;
+            serializeModel.FirstName = requestedEmployee.FirstName;
+            serializeModel.LastName = requestedEmployee.LastName;
+            serializeModel.EmailId = requestedEmployee.Email;
+            serializeModel.Password = requestedEmployee.Password;
             System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
             string userData = serializer.Serialize(serializeModel);
 
             FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
-              1, credentials.EmailId, DateTime.Now, DateTime.Now.AddMinutes(10), false, userData);
+              1, requestedEmployee.Email, DateTime.Now, DateTime.Now.AddMinutes(10), false, userData);
             string encTicket = FormsAuthentication.Encrypt(authTicket);
             HttpCookie Cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
             Response.Cookies.Add(Cookie);
@@ -96,14 +98,29 @@ namespace RoleBasedMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            Credentials credentials = new Credentials();
+            credentials.EmailId = model.UserName;
+            credentials.Password = model.Password;
+            var response = Credentials.Authenticate(credentials);
+            if (response.ResponseStatus.Code == "500")
             {
-                return RedirectToLocal(returnUrl);
+                ModelState.AddModelError("", "Incorrect User-EmaiId or Password!");
+                return View("Login");
             }
+            else
+            {
+
+                CreateAuthenticationTicket(response.RequestedEmployee);
+                if (HttpContext.User.IsInRole("hr") == true)
+                    return View("HRHome");
+                else
+                    return View("EmployeeHome");
+            }
+           
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            return View(model);
+            //ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            //return View(model);
         }
 
         //
@@ -206,20 +223,29 @@ namespace RoleBasedMVC.Controllers
                     bool changePasswordSucceeded;
                     try
                     {
-                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
+                        UpdatePassword obj = new UpdatePassword();
+                        obj.EmailId = User.Identity.Name;
+                        obj.OldPassword = model.OldPassword;
+                        obj.NewPassword = model.NewPassword;
+                        var resp = UpdatePassword.ModifyPassword(obj);
+                        if (resp.ResponseStatus.Code == "500")
+                            changePasswordSucceeded = false;
+                        else
+                            changePasswordSucceeded = true;
+                        //changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
+
+                        if (changePasswordSucceeded)
+                        {
+                            return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                        }
                     }
                     catch (Exception)
                     {
-                        changePasswordSucceeded = false;
-                    }
 
-                    if (changePasswordSucceeded)
-                    {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
                     }
                 }
             }

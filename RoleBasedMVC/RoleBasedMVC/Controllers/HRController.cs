@@ -19,8 +19,17 @@ namespace RoleBasedMVC.Controllers
         }
         public ActionResult AddEmployee(Employee employee)
         {
-            Employee.AddEmployee(employee);
-            return View("AddEmployee");
+            if (HttpContext.User.IsInRole("hr") == false)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                employee.JoiningDate = DateTime.UtcNow;
+                Employee.AddEmployee(employee);
+                return View("AddEmployee");
+            }
+
         }
 
         //=====================
@@ -28,7 +37,7 @@ namespace RoleBasedMVC.Controllers
         //{
         //    var response = GetAllEmployeeResponse.GetEmployeeList();
         //    List<SelectListItem> allEmployeeList = new List<SelectListItem>();
-            
+
         //    foreach (var employee in response.RequestedEmployeeList)
         //    {
         //        allEmployeeList.Add(new SelectListItem { Value = employee.Id, Text = employee.Id + ". " + employee.FirstName + "  " + employee.LastName });
@@ -53,15 +62,22 @@ namespace RoleBasedMVC.Controllers
         [Authorize]
         public ActionResult AddRemarks()
         {
-            var response = GetAllEmployeeResponse.GetEmployeeList();
-            List<SelectListItem> allEmployeeList = new List<SelectListItem>();
-
-            foreach (var employee in response.RequestedEmployeeList)
+            if (HttpContext.User.IsInRole("hr") == false)
             {
-                allEmployeeList.Add(new SelectListItem { Value = Convert.ToString(employee.Id), Text = employee.Id + ". " + employee.FirstName + "  " + employee.LastName });
+                return RedirectToAction("Login", "Account");
             }
-            ViewData["EmpList"] = allEmployeeList;
-            return View();
+            else
+            {
+                var response = GetAllEmployeeResponse.GetEmployeeList();
+                List<SelectListItem> allEmployeeList = new List<SelectListItem>();
+
+                foreach (var employee in response.RequestedEmployeeList)
+                {
+                    allEmployeeList.Add(new SelectListItem { Value = Convert.ToString(employee.Id), Text = employee.Id + ". " + employee.FirstName + "  " + employee.LastName });
+                }
+                ViewData["EmpList"] = allEmployeeList;
+                return View();
+            }
         }
 
         [Authorize]
@@ -86,6 +102,7 @@ namespace RoleBasedMVC.Controllers
             var pageSize = 4;
             var pageList = new StaticPagedList<Remark>(remarkList, pageNumber, pageSize, count);
             return View(pageList);
+
         }
     }
 }
