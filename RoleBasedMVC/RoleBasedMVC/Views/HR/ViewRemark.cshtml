@@ -1,0 +1,22 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<RoleBasedAccess.Model.Remark>
+
+@{
+   ViewBag.Title = "ViewRemarks";
+   WebGrid grid = new WebGrid(Model);
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<h2>View Remarks</h2>
+
+
+@grid.GetHtml(columns: new[]
+{
+  grid.Column("Text"),
+  grid.Column("CreateTimeStamp")
+})
+<div class="center">
+   @Html.PagedListPager(Model, pageIndex => Url.Action("ViewRemark",
+   new { pageIndex, pageSize = Model.PageSize }))
+   Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Remarks
+</div>
