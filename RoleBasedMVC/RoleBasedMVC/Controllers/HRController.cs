@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using RoleBasedAccess.Model;
 using PagedList;
+using MVCRoleBasedSecurity;
 
 namespace RoleBasedMVC.Controllers
 {
@@ -66,7 +67,8 @@ namespace RoleBasedMVC.Controllers
         [Authorize]
         public ActionResult ViewRemark(int? pageIndex)
         {
-            string employeeId = "3";  //value from cookie
+
+            string employeeId = (HttpContext.User as CustomPrincipal).Id;
             int pageNumber = (pageIndex ?? 1);
             var response = Pagination.GetPageRemarks(employeeId, Convert.ToString(pageNumber));
             var remarkList = response.RequestedPagination.Remarks;
