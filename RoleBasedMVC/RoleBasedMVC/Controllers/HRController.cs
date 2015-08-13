@@ -32,33 +32,6 @@ namespace RoleBasedMVC.Controllers
 
         }
 
-        //=====================
-        //public ActionResult AddRemarks()
-        //{
-        //    var response = GetAllEmployeeResponse.GetEmployeeList();
-        //    List<SelectListItem> allEmployeeList = new List<SelectListItem>();
-
-        //    foreach (var employee in response.RequestedEmployeeList)
-        //    {
-        //        allEmployeeList.Add(new SelectListItem { Value = employee.Id, Text = employee.Id + ". " + employee.FirstName + "  " + employee.LastName });
-
-        //    }
-        //    ViewData["EmpList"] = allEmployeeList;
-
-
-        //    return View();
-        //}
-        //public ActionResult SaveRemarks(Remark remark)
-        //{
-        //    string employeeId = Request["Employee"];
-        //    remark.CreateTimeStamp = DateTime.UtcNow;
-        //    var response = Remark.AddRemark(employeeId, remark);
-
-        //    ViewData["MyData"] = response; // Send this list to the view
-
-        //    return View("AddRemarks");
-        //}
-        //===============================
         [Authorize]
         public ActionResult AddRemarks()
         {
@@ -76,7 +49,7 @@ namespace RoleBasedMVC.Controllers
                     allEmployeeList.Add(new SelectListItem { Value = Convert.ToString(employee.Id), Text = employee.Id + ". " + employee.FirstName + "  " + employee.LastName });
                 }
                 ViewData["EmpList"] = allEmployeeList;
-                return View();
+                return View("");
             }
         }
 
@@ -93,7 +66,7 @@ namespace RoleBasedMVC.Controllers
         [Authorize]
         public ActionResult ViewRemark(int? pageIndex)
         {
-            string employeeId = "1";  //value from cookie
+            string employeeId = "3";  //value from cookie
             int pageNumber = (pageIndex ?? 1);
             var response = Pagination.GetPageRemarks(employeeId, Convert.ToString(pageNumber));
             var remarkList = response.RequestedPagination.Remarks;

@@ -1,12 +1,14 @@
-﻿@using PagedList.Mvc;
+﻿@using PagedList;
+@using PagedList.Mvc;
 @model PagedList.IPagedList<RoleBasedAccess.Model.Remark>
 
 @{
-   ViewBag.Title = "ViewRemark";
+   ViewBag.Title = "ViewRemarks";
    WebGrid grid = new WebGrid(Model);
 }
-
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <h2>View Remarks</h2>
+
 
 @grid.GetHtml(columns: new[]
 {

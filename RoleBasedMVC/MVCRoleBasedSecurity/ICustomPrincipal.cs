@@ -17,6 +17,7 @@ namespace MVCRoleBasedSecurity
         string LastName { get; set; }
 
         string EmailId { get; set; }
+
         string Password { get; set; }
     }
 }

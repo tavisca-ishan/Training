@@ -29,47 +29,6 @@ namespace RoleBasedMVC.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        //public ActionResult AuthenticateUser(Credentials credentials)
-        //{
-        //    //EmployeeResponse response = null;
-        //    //var employee = new Employee();
-        //    var response = Credentials.Authenticate(credentials);
-        //    if (response.ResponseStatus.Code == "500")
-        //    {
-        //        ModelState.AddModelError("", "Incorrect User-EmaiId or Password!");
-        //        return View("Login");
-        //    }
-        //    else
-        //    {
-              
-        //        CreateAuthenticationTicket(response.RequestedEmployee);
-        //        if (HttpContext.User.IsInRole("hr") == true)
-        //            return View("HRHome");
-        //        else
-        //            return View("EmployeeHome");
-        //    }
-        //}
-
-        public void CreateAuthenticationTicket(Employee requestedEmployee)
-        {
-
-            CustomPrincipalSerializedModel serializeModel = new CustomPrincipalSerializedModel();
-            serializeModel.Id = requestedEmployee.Id;
-            serializeModel.Title = requestedEmployee.Title;
-            serializeModel.FirstName = requestedEmployee.FirstName;
-            serializeModel.LastName = requestedEmployee.LastName;
-            serializeModel.EmailId = requestedEmployee.Email;
-            serializeModel.Password = requestedEmployee.Password;
-            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-            string userData = serializer.Serialize(serializeModel);
-
-            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
-              1, requestedEmployee.Email, DateTime.Now, DateTime.Now.AddMinutes(10), false, userData);
-            string encTicket = FormsAuthentication.Encrypt(authTicket);
-            HttpCookie Cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
-            Response.Cookies.Add(Cookie);
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -99,7 +58,7 @@ namespace RoleBasedMVC.Controllers
         public ActionResult Login(LoginModel model, string returnUrl)
         {
             Credentials credentials = new Credentials();
-            credentials.EmailId = model.UserName;
+            credentials.EmailId = model.EmailId;
             credentials.Password = model.Password;
             var response = Credentials.Authenticate(credentials);
             if (response.ResponseStatus.Code == "500")
@@ -111,16 +70,33 @@ namespace RoleBasedMVC.Controllers
             {
 
                 CreateAuthenticationTicket(response.RequestedEmployee);
-                if (HttpContext.User.IsInRole("hr") == true)
+                if (string.Equals(response.RequestedEmployee.Title, "hr", StringComparison.OrdinalIgnoreCase))
                     return View("HRHome");
                 else
                     return View("EmployeeHome");
-            }
-           
 
-            // If we got this far, something failed, redisplay form
-            //ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            //return View(model);
+            }
+  
+        }
+
+        public void CreateAuthenticationTicket(Employee requestedEmployee)
+        {
+
+            CustomPrincipalSerializedModel serializeModel = new CustomPrincipalSerializedModel();
+            serializeModel.Id = requestedEmployee.Id;
+            serializeModel.Title = requestedEmployee.Title;
+            serializeModel.FirstName = requestedEmployee.FirstName;
+            serializeModel.LastName = requestedEmployee.LastName;
+            serializeModel.EmailId = requestedEmployee.Email;
+            serializeModel.Password = requestedEmployee.Password;
+            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string userData = serializer.Serialize(serializeModel);
+
+            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
+              1, requestedEmployee.Email, DateTime.Now, DateTime.Now.AddMinutes(10), false, userData);
+            string encTicket = FormsAuthentication.Encrypt(authTicket);
+            HttpCookie Cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+            Response.Cookies.Add(Cookie);
         }
 
         //
@@ -207,77 +183,46 @@ namespace RoleBasedMVC.Controllers
 
         //
         // POST: /Account/Manage
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Manage(LocalPasswordModel model)
         {
-            bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            ViewBag.HasLocalPassword = hasLocalAccount;
             ViewBag.ReturnUrl = Url.Action("Manage");
-            if (hasLocalAccount)
+
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                // ChangePassword will throw an exception rather than return false in certain failure scenarios.
+                bool changePasswordSucceeded;
+                try
                 {
-                    // ChangePassword will throw an exception rather than return false in certain failure scenarios.
-                    bool changePasswordSucceeded;
-                    try
-                    {
-                        UpdatePassword obj = new UpdatePassword();
-                        obj.EmailId = User.Identity.Name;
-                        obj.OldPassword = model.OldPassword;
-                        obj.NewPassword = model.NewPassword;
-                        var resp = UpdatePassword.ModifyPassword(obj);
-                        if (resp.ResponseStatus.Code == "500")
-                            changePasswordSucceeded = false;
-                        else
-                            changePasswordSucceeded = true;
-                        //changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
+                    UpdatePassword modify = new UpdatePassword();
+                    modify.EmailId = User.Identity.Name;
+                    modify.OldPassword = model.OldPassword;
+                    modify.NewPassword = model.NewPassword;
+                    var response = UpdatePassword.ModifyPassword(modify);
+                    if (response.ResponseStatus.Code == "500")
+                        changePasswordSucceeded = false;
+                    else
+                        changePasswordSucceeded = true;
+                }
+                catch (Exception)
+                {
+                    changePasswordSucceeded = false;
+                }
 
-                        if (changePasswordSucceeded)
-                        {
-                            return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
-                        }
-                        else
-                        {
-                            ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                        }
-                    }
-                    catch (Exception)
-                    {
-
-                    }
+                if (changePasswordSucceeded)
+                {
+                    return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                }
+                else
+                {
+                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
                 }
             }
-            else
-            {
-                // User does not have a local password so remove any validation errors caused by a missing
-                // OldPassword field
-                ModelState state = ModelState["OldPassword"];
-                if (state != null)
-                {
-                    state.Errors.Clear();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
-                    }
-                    catch (Exception)
-                    {
-                        ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
-                    }
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        //
+       
         // POST: /Account/ExternalLogin
 
         [HttpPost]

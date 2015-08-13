@@ -131,8 +131,8 @@ namespace Tavisca.EmployeeManagement.FileStorage
                             remarkList.Add(remark);
                              
                     }
-                    else
-                        throw new System.Exception("Requested Data not found!");
+                    //else
+                    //    throw new System.Exception("Requested Data not found!");
                     emp.Remarks = remarkList;
                     reader.Close();
                 }
@@ -258,6 +258,7 @@ namespace Tavisca.EmployeeManagement.FileStorage
                         allEmployee.Email = reader[4].ToString();
                         allEmployee.Phone = reader[5].ToString();
                         allEmployee.JoiningDate = Convert.ToDateTime(reader[6]);
+                        allEmployee.Password = reader[7].ToString();
                     }
                     else
                     {
@@ -347,20 +348,18 @@ namespace Tavisca.EmployeeManagement.FileStorage
                 conEmployee.Close();
                 List<Model.Remark> remarkList = new List<Model.Remark>();
                 SqlConnection connect = new SqlConnection(ConfigurationManager.ConnectionStrings["employeedb"].ConnectionString);
+                connect.Open();
                 using (connect)
                 {
 
-                    SqlCommand command = new SqlCommand("paginated_emp_remark", connect);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@EmpId", SqlDbType.Int));
-                    command.Parameters.Add(new SqlParameter("@pageNumber", SqlDbType.Int));
+                    SqlCommand command2 = new SqlCommand("paginated_emp_remark", connect);
+                    command2.CommandType = CommandType.StoredProcedure;
+                    command2.Parameters.Add(new SqlParameter("@EmpId", SqlDbType.Int));
+                    command2.Parameters.Add(new SqlParameter("@pageNumber", SqlDbType.Int));
 
-                    command.Parameters["@EmpId"].Value = employeeId;
-                    command.Parameters["@pageNumber"].Value = pageNumber;
-
-
-                    connect.Open();
-                    SqlDataReader remarkReader = command.ExecuteReader();
+                    command2.Parameters["@EmpId"].Value = employeeId;
+                    command2.Parameters["@pageNumber"].Value = pageNumber;
+                    SqlDataReader remarkReader = command2.ExecuteReader();
                     while (remarkReader.Read())
                     {
                         Model.Remark remark = new Model.Remark();
